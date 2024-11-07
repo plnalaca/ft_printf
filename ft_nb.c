@@ -6,7 +6,7 @@
 /*   By: palaca <palaca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:37:13 by palaca            #+#    #+#             */
-/*   Updated: 2024/11/07 21:03:54 by palaca           ###   ########.fr       */
+/*   Updated: 2024/11/08 02:10:59 by palaca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_putunbr(unsigned int nb)
 	i = 0;
 	if (nb <= 9 && nb >= 0)
 		i += ft_putchar(nb + '0');
-	else 
+	else
 	{
 		i += ft_putnbr(nb / 10);
 		i += ft_putnbr(nb % 10);
@@ -48,7 +48,7 @@ int	ft_putunbr(unsigned int nb)
 	return (i);
 }
 
-int	ft_puthex(unsigned int nb, char x)
+int	ft_puthex(unsigned long nb, char x)
 {
 	int	i;
 
@@ -72,25 +72,11 @@ int	ft_puthex(unsigned int nb, char x)
 
 int	ft_putpoint(unsigned long nb)
 {
-	int	i;
-
-	i = 0;
-	
-	
 	if (nb == 0)
-		i += ft_putstr("(nil)");
-	if (nb >= 16)
+		return (ft_putstr("(nil)"));
+	else
 	{
-		i += ft_putstr("0x");
-		i += ft_putpoint(nb / 16);
-		i += ft_putpoint(nb % 16);
+		return (ft_putstr("0x") + ft_puthex(nb, 'x'));
 	}
-	else 
-	{
-		if (nb <= 9)
-		i += ft_putchar(nb + '0');
-		else
-		i += ft_putchar(nb - 10 + 'a');
-	}
-	return (i);
+	return (0);
 }
